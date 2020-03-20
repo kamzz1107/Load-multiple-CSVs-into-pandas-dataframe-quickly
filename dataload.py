@@ -1,11 +1,12 @@
 import pandas as pd
-import subprocess
 from multiprocessing import Pool
 import glob
 import time
 import os
 
 start_time = time.time()
+
+local_path = "loacl directory path"
 
 #load data into pandas dataframe
 # wrap your csv importer in a function that can be mapped
@@ -22,7 +23,7 @@ def read_file(filename):
 df_list = None
 
 #load data
-file_list = glob.glob(local_path+'/'+table_name+'/*')
+file_list = glob.glob(local_path+'/*')
 with Pool(processes=no_of_CPUs*2) as pool:
   df_list = pool.map(read_file, file_list)
 
